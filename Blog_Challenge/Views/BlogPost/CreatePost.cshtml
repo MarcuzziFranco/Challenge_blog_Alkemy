@@ -1,0 +1,68 @@
+﻿
+@model Blog_Challenge.ViewModels.PostViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleCreatePost.css" />
+
+    <title>CreatePost</title>
+</head>
+<body>
+    <header>
+        <div class=" container">
+            <h2>Create New Post</h2>
+        </div>
+    </header>
+    <div class="container">
+        @using (Html.BeginForm("CreatePost", "BlogPost", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <div>
+                    @Html.Label("Tittle")
+                    @Html.TextBoxFor(x => x.Tittle, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(x => x.Tittle)
+            </div>
+            <br />
+            <div class="form-group">
+                <div>
+                    @Html.Label("Contain")
+                    @Html.TextAreaFor(x => x.Contain, new { @class = "form-control", @rows = 26 })
+                </div>
+                @Html.ValidationMessageFor(x => x.Contain)
+            </div>
+            <br />
+            <div class="form-group">
+                <div>
+                    <input type="file" id="imgLoad" name="imageFile" />
+                </div>
+            </div>
+            <br />
+            <div class=" form-group">
+                <img src="#" id="imgShow"/>
+            </div>
+
+            <div>             
+                @Html.Label("Category")
+                @Html.DropDownList("categorySelected", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <br />
+
+            <div>
+                <input type="submit" value="Public Post!" />
+            </div>
+        }
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/LoadImage.js"></script>
+
+</body>
+</html>
